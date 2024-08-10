@@ -1,0 +1,184 @@
+CREATE TABLE Librarians
+(
+  First_name VARCHAR2(20) NOT NULL,
+  Last_name VARCHAR2(20) NOT NULL,
+  Middle_name VARCHAR2(20) NOT NULL,
+  L_ID NUMBER(6) NOT NULL,
+  Salary NUMBER(6) NOT NULL,
+  PRIMARY KEY (L_ID)
+);
+
+CREATE TABLE Students
+(
+  S_id NUMBER(20) NOT NULL,
+  Street VARCHAR2(20) NOT NULL,
+  City VARCHAR2(20) NOT NULL,
+  First_name VARCHAR2(20) NOT NULL,
+  Middle_name VARCHAR2(20) NOT NULL,
+  Last_name VARCHAR2(20) NOT NULL,
+  Email VARCHAR2(40) NOT NULL,
+  PRIMARY KEY (S_id)
+);
+
+CREATE TABLE Publisher
+(
+  Name VARCHAR2(20) NOT NULL,
+  Publisher_ID NUMBER(6) NOT NULL,
+  YearOfPublication DATE NOT NULL,
+  PRIMARY KEY (Publisher_ID)
+);
+
+CREATE TABLE Students_Phone
+(
+  Phone NUMBER(11) NOT NULL,
+  S_id NUMBER(20) NOT NULL,
+  PRIMARY KEY (Phone, S_id),
+  FOREIGN KEY (S_id) REFERENCES Students(S_id)
+);
+
+CREATE TABLE Books
+(
+  Name VARCHAR2(20) NOT NULL,
+  B_ID NUMBER(10) NOT NULL,
+  Price Number(6) NOT NULL,
+  S_id NUMBER(10),
+  Borrowed varchar(5),
+  Author_name VARCHAR2(20) NOT NULL,
+  Publisher_ID NUMBER(6) NOT NULL,
+  L_ID NUMBER(6) NOT NULL,
+  PRIMARY KEY (B_ID),
+  FOREIGN KEY (S_id) REFERENCES Students(S_id),
+  FOREIGN KEY (Publisher_ID) REFERENCES Publisher(Publisher_ID),
+  FOREIGN KEY (L_ID) REFERENCES Librarians(L_ID)
+);
+
+CREATE TABLE Books_Genres
+(
+  Genres VARCHAR2(20) NOT NULL,
+  B_ID NUMBER(6) NOT NULL,
+  PRIMARY KEY (Genres, B_ID),
+  FOREIGN KEY (B_ID) REFERENCES Books(B_ID)
+);
+
+create table Librarian_Support(
+S_ID number(10),
+L_ID number(10)
+);
+  
+INSERT INTO librarians (l_id, first_name, middle_name, last_name, salary)
+values (1, 'Ahmed', 'Amr', 'Ali', 2000)
+INSERT INTO librarians (l_id, first_name, middle_name, last_name, salary)
+values (2, 'Mohamed', 'Waleed', 'Ahmed', 3500);
+INSERT INTO librarians (l_id, first_name, middle_name, last_name, salary)
+values (3, 'Sara', 'Ahmed', 'Mohamed', 2000);
+INSERT INTO librarians (l_id, first_name, middle_name, last_name, salary)
+values (4, 'Zaina', 'Ashraf', 'Khaled', 5000);
+INSERT INTO librarians (l_id, first_name, middle_name, last_name, salary)
+values (5, 'Salma', 'Amr', 'Ali', 3000);
+INSERT INTO librarians (l_id, first_name, middle_name, last_name, salary)
+values (6, 'Soad', 'Mohamed', 'Bakry', 100);
+INSERT INTO librarians (l_id, first_name, middle_name, last_name, salary)
+values (7, 'Dina', 'Ahmed', 'Bakry', 150);
+
+INSERT INTO students (s_id, first_name, middle_name, last_name, email, city, street)
+VALUES (2021170339, 'Ali', 'Tarek', 'Mohamed', 'alitarekofficial@gmail.com', 'cairo', 'Helmy Zain El-Deen');
+INSERT INTO students (s_id, first_name, middle_name, last_name, email, city, street)
+VALUES (2021170334, 'Ali', 'Kaled', 'Abd El_Aal', 'alikld2003@gmail.com', 'cairo', 'Ahemd Ali');
+INSERT INTO students (s_id, first_name, middle_name, last_name, email, city, street)
+VALUES (2021170335, 'Ali', 'Kaled', 'Mohamed', 'ali083981@gmail.com', 'cairo', 'Helmy Zain El-Deen');
+INSERT INTO students (s_id, first_name, middle_name, last_name, email, city, street)
+VALUES (2021170373, 'Amr', 'Khaled', 'Abd El-Hameed', 'amrkhaled222@gmail.com', 'cairo', 'Thabet Elsefry');
+INSERT INTO students (s_id, first_name, middle_name, last_name, email, city, street)
+VALUES (2021170333, 'Ali', 'Ahmed', 'Abd El-Hameed', 'bd99570@gmail.com', 'cairo', 'Helmy Zain El-Deen');
+INSERT INTO students (s_id, first_name, middle_name, last_name, email, city, street)
+VALUES (2021170353, 'Omar', 'Bahaa', 'Helmy', 'omaralfaham04@gmail.com', 'cairo', 'Khaled ebn El-Waleed');
+INSERT INTO students (s_id, first_name, middle_name, last_name, email, city, street)
+VALUES (2021170359, 'Omar', 'Atef', 'Mohamed', 'oa196145@gmail.com', 'cairo', 'Ayoob');
+
+INSERT INTO PUBLISHER (name, publisher_id, yearofpublication)
+values ('Samy', 100, '25-MAY-2001');
+INSERT INTO PUBLISHER (name, publisher_id, yearofpublication)
+values ('Hazem', 101, '12-FEB-2007');
+INSERT INTO PUBLISHER (name, publisher_id, yearofpublication)
+values ('Ola', 102, '3-DEC-2005');
+INSERT INTO PUBLISHER (name, publisher_id, yearofpublication)
+values ('Toka', 103, '7-NOV-2002');
+INSERT INTO PUBLISHER (name, publisher_id, yearofpublication)
+values ('Khaled', 104, '30-JAN-2009');
+INSERT INTO PUBLISHER (name, publisher_id, yearofpublication)
+values ('Zaki', 105, '27-AUG-2003');
+INSERT INTO PUBLISHER (name, publisher_id, yearofpublication)
+values ('sayed', 106, '13-NOV-2003');
+
+
+INSERT INTO STUDENTS_PHONE (PHONE, S_ID)
+VALUES (01200226383, 2021170339);
+INSERT INTO STUDENTS_PHONE (PHONE, S_ID)
+VALUES (01281810056, 2021170353);
+INSERT INTO STUDENTS_PHONE (PHONE, S_ID)
+VALUES (01013226080, 2021170373);
+INSERT INTO STUDENTS_PHONE (PHONE, S_ID)
+VALUES (01022121275, 2021170334);
+INSERT INTO STUDENTS_PHONE (PHONE, S_ID)
+VALUES (01064156174, 2021170335);
+INSERT INTO STUDENTS_PHONE (PHONE, S_ID)
+VALUES (01014760336, 2021170333);
+INSERT INTO STUDENTS_PHONE (PHONE, S_ID)
+VALUES (01006343123, 2021170359);
+
+INSERT INTO books (AUTHOR_NAME, B_ID, L_ID, Name, Price, Publisher_ID, S_id)
+VALUES ('Allen B.Downey', 1, 1, 'Think Stat 2', 500, 100, 2021170339);
+insert into books (author_name, b_id, l_id, name, price, publisher_id, s_id)
+values ('Ray A.Serway', 2, 2, 'Serway', 400, 101, 2021170359);
+insert into books (author_name, b_id, l_id, name, price, publisher_id, s_id)
+values ('Francois Chollet', 3, 3, 'Python in AI', 999, 102, 2021170333);
+insert into books (author_name, b_id, l_id, name, price, publisher_id, s_id)
+values ('Paul Deitel', 4, 4, 'Java How to Program', 777, 103, 2021170335);
+insert into books (author_name, b_id, l_id, name, price, publisher_id, s_id)
+values ('Gilbert Strang', 5, 5, 'Calculus', 555, 104, 2021170334);
+insert into books (author_name, b_id, l_id, name, price, publisher_id, s_id)
+values ('El_Masry', 6, 6, 'DataBase', 501, 105, 2021170373);
+insert into books (author_name, b_id, l_id, name, price, publisher_id)
+values ('Q.Ethan', 7, 7, 'Bad Data', 550, 106);
+insert into books (author_name, b_id, l_id, name, price, publisher_id)
+values ('Joanna Russ', 8, 6, 'The Female Man', 200, 104);
+insert into books (author_name, b_id, l_id, name, price, publisher_id)
+values ('Jamie Metzl', 9, 7, 'Hacking Darwin', 210, 105);
+commit;
+
+
+
+insert into books_genres (genres, b_id)
+values ('AI', 1);
+insert into books_genres (genres, b_id)
+values ('Physics', 2);
+insert into books_genres (genres, b_id)
+values ('AI', 3);
+insert into books_genres (genres, b_id)
+values ('Programming', 4);
+insert into books_genres (genres, b_id)
+values ('Math', 5);
+insert into books_genres (genres, b_id)
+values ('DataBase', 6);
+insert into books_genres (genres, b_id)
+values ('DataBase', 7);
+insert into books_genres (genres, b_id)
+values ('Novel', 8);
+insert into books_genres (genres, b_id)
+values ('Biology', 9);
+
+insert into librarian_support
+values (2021170339, 1);
+insert into librarian_support
+values (2021170353, 2);
+insert into librarian_support
+values (2021170373, 3);
+insert into librarian_support
+values (2021170334, 4);
+insert into librarian_support
+values (2021170335, 5);
+insert into librarian_support
+values (2021170359, 6);
+insert into librarian_support
+values (2021170333, 7);
+
